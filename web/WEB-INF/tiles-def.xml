@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    
+    <!--Layouts-->
+    <!--definition name="baselayout" template="/WEB-INF/tiles/baselayout.jsp">
+        <put-attribute name="title"  value="Template"/>
+        <put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
+        <put-attribute name="body"   value="/WEB-INF/tiles/body.jsp"/>
+        <put-attribute name="footer"   value="/WEB-INF/tiles/footer.jsp"/>
+    </definition-->
+    <definition name="baselayout" template="/WEB-INF/tiles/innerdivlayout.jsp">
+        <put-attribute name="title"  value="Template"/>
+        <put-attribute name="body"   value="/WEB-INF/tiles/body.jsp"/>
+    </definition>
+    
+    <definition name="innerdivlayout" template="/WEB-INF/tiles/innerdivlayout.jsp">
+        <!--put-attribute name="title"  value="Template"/-->
+        <put-attribute name="body"   value="/WEB-INF/tiles/body.jsp"/>
+    </definition>
+    
+    <definition name="popuplayout" template="/WEB-INF/tiles/popuplayout.jsp">
+        <put-attribute name="title"  value="Template"/>
+        <put-attribute name="header" value="/WEB-INF/tiles/popheader.jsp"/>
+        <put-attribute name="body"   value="/WEB-INF/tiles/body.jsp"/>
+    </definition>
+    
+    <definition name="baselayout1" template="/WEB-INF/tiles/baselayout1.jsp">
+        <put-attribute name="title"  value="Template"/>
+        <put-attribute name="header" value="/WEB-INF/tiles/header1.jsp"/>
+        <put-attribute name="body"   value="/WEB-INF/tiles/body.jsp"/>
+        <put-attribute name="footer"   value="/WEB-INF/tiles/footer1.jsp"/>
+    </definition>
+    
+    <definition name="loginlayout" template="/WEB-INF/tiles/loginlayout.jsp">
+        <put-attribute name="title"  value="Template"/>
+        <put-attribute name="body"   value="/WEB-INF/tiles/body.jsp"/>        
+    </definition>
+    
+    <definition name="cislayout" template="/WEB-INF/tiles/cislayout.jsp">
+        <put-attribute name="title"  value="Template"/>
+        <put-attribute name="body"   value="/WEB-INF/tiles/body.jsp"/>        
+    </definition>
+  
+    <!--Layouts-->
+    
+    <definition name="login" extends="loginlayout">
+        <put-attribute name="title"  value="Login to ConnectedInSight"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/login.jsp"/>       
+    </definition>
+    
+    <!--Error Pages-->
+    <definition name="404" extends="loginlayout"><!--baselayout1-->
+        <put-attribute name="title"  value="Error...Page not found"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/error/404.jsp"/>
+    </definition>
+    
+    <definition name="500" extends="loginlayout">
+        <put-attribute name="title"  value="Internal Server Error"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/error/500.jsp"/>
+    </definition>
+    
+    <definition name="403" extends="loginlayout">
+        <put-attribute name="title"  value="Access Denied"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/error/403.jsp"/>
+    </definition>
+    <!--Error and login pages-->
+    
+    <!--User Management-->
+    <definition name="userhome" extends="cislayout">
+        <put-attribute name="title"  value="User Home"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/userhome.jsp"/>
+    </definition>
+    <definition name="home" extends="baselayout">
+        <put-attribute name="title"  value="User Home"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/home.jsp"/>
+    </definition>
+    <definition name="ajaxtest" extends="baselayout">
+        <put-attribute name="title"  value="User Home"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/ajaxtest.jsp"/>
+    </definition>
+    <definition name="adduser" extends="baselayout">
+        <put-attribute name="title"  value="Add New User"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/UserManagement/adduser.jsp"/>
+    </definition>
+    <definition name="searchuser" extends="baselayout">
+        <put-attribute name="title"  value="Search User"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/UserManagement/searchuser.jsp"/>
+    </definition>
+    <definition name="edituser" extends="baselayout">
+        <put-attribute name="title"  value="Edit User"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/UserManagement/edituser.jsp"/>
+    </definition>
+    <definition name="addusergroup" extends="baselayout">
+        <put-attribute name="title"  value="Add User Group"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/UserManagement/addusergroup.jsp"/>
+    </definition>
+    <definition name="searchusergroup" extends="baselayout">
+        <put-attribute name="title"  value="Search User Group"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/UserManagement/searchusergroup.jsp"/>
+    </definition>    
+    <definition name="editusergroup" extends="baselayout">
+        <put-attribute name="title"  value="Edit User Group"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/UserManagement/editusergroup.jsp"/>
+    </definition>
+    <definition name="userhelp" extends="popuplayout">
+        <put-attribute name="title"  value="User Management Helpful hints"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/UserManagement/userhelp.jsp"/>
+    </definition>
+    <!--User Management-->
+    
+    <!--Organization-->
+    <definition name="addorg" extends="baselayout">
+        <put-attribute name="title"  value="Add Organization"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Organization/addorg.jsp"/>
+    </definition>
+    <definition name="editorg" extends="baselayout">
+        <put-attribute name="title"  value="Edit Organization"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Organization/editorg.jsp"/>
+    </definition>
+    <definition name="organization" extends="baselayout">
+        <put-attribute name="title"  value="Organization Profile"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Organization/searchorg.jsp"/>
+    </definition>
+    <!--Organization-->
+    
+    <!--Process-->
+    <definition name="createprocess" extends="baselayout">
+        <put-attribute name="title"  value="Add Process"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/createprocess.jsp"/>
+    </definition>
+    <definition name="addprocess" extends="baselayout">
+        <put-attribute name="title"  value="Add Process"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/addprocess.jsp"/>
+    </definition>
+    <definition name="editprocess" extends="baselayout">
+        <put-attribute name="title"  value="Edit Process"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/editprocess.jsp"/>
+    </definition>
+    <definition name="addsubprocess" extends="baselayout">
+        <put-attribute name="title"  value="Add Sub-Process"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/addsubprocess.jsp"/>
+    </definition>
+    <definition name="editsubprocess" extends="baselayout">
+        <put-attribute name="title"  value="Edit Sub-Process"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/editsubprocess.jsp"/>
+    </definition>
+    <definition name="searchprocess" extends="baselayout">
+        <put-attribute name="title"  value="Search Process"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/searchprocess.jsp"/>
+    </definition>
+    <definition name="searchsubprocess" extends="baselayout">
+        <put-attribute name="title"  value="Search Sub-Process"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/searchsubprocess.jsp"/>
+    </definition> 
+    <definition name="addsubprocesstarget" extends="baselayout">
+        <put-attribute name="title"  value="Sub Process Target Operation"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/addsubprocesstarget.jsp"/>
+    </definition>
+    <definition name="searchsubprocesstarget" extends="baselayout">
+        <put-attribute name="title"  value="Search Sub Process Target"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/searchsubprocesstarget.jsp"/>
+    </definition>
+    <definition name="listprocess" extends="baselayout">
+        <put-attribute name="title"  value="Process and SubProcess List"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/listprocess.jsp"/>
+    </definition>
+    <definition name="processhelp" extends="popuplayout">
+        <put-attribute name="title"  value="Process Helpful hints"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/processhelp.jsp"/>
+    </definition>
+    <definition name="subprocesshelp" extends="popuplayout">
+        <put-attribute name="title"  value="SubProcess Helpful hints"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Process/subprocesshelp.jsp"/>
+    </definition>
+    <!--Process-->
+    
+    <!--Benchmark-->
+    <definition name="addbenchmark" extends="baselayout">
+        <put-attribute name="title"  value="Add Benchmark"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Benchmark/addbenchmark.jsp"/>
+    </definition> 
+    <definition name="editbenchmark" extends="baselayout">
+        <put-attribute name="title"  value="Edit Benchmark"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Benchmark/editbenchmark.jsp"/>
+    </definition> 
+    <definition name="listbenchmark" extends="baselayout">
+        <put-attribute name="title"  value="List Benchmark"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Benchmark/listbenchmark.jsp"/>
+    </definition> 
+    <definition name="searchbenchmark" extends="baselayout">
+        <put-attribute name="title"  value="Search Benchmark"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Benchmark/searchbenchmark.jsp"/>
+    </definition> 
+    
+    <!--Benchmark-->
+    <!--ActualReference-->
+    <definition name="addactualvalue" extends="baselayout">
+        <put-attribute name="title"  value="Add Actual Value"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/ActualReference/addactualvalue.jsp"/>
+    </definition>
+    <!--ActualReference-->
+    
+    <!--Location-->
+    <definition name="addlocation" extends="baselayout">
+        <put-attribute name="title"  value="Add Business Center"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Location/addlocation.jsp"/>
+    </definition>
+    <definition name="editlocation" extends="baselayout">
+        <put-attribute name="title"  value="Edit Business Center"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Location/editlocation.jsp"/>
+    </definition>
+    <definition name="searchlocation" extends="baselayout">
+        <put-attribute name="title"  value="Search Business Center"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Location/searchlocation.jsp"/>
+    </definition>
+    <definition name="locationhelp" extends="popuplayout">
+        <put-attribute name="title"  value="Business Centers Helpful hints"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Location/locationhelp.jsp"/>
+    </definition>
+    <!--Location-->
+     
+    <!--HRDataEntry-->
+    
+    <definition name="addhrdata" extends="baselayout">
+        <put-attribute name="title"  value="Add HR Data"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/addhrdata.jsp"/>
+    </definition>
+    
+    <definition name="edithrdata" extends="baselayout">
+        <put-attribute name="title"  value="Edit Hrdataentry"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/edithrdata.jsp"/>
+    </definition>
+    
+    <definition name="searchhrdataentry" extends="baselayout">
+        <put-attribute name="title"  value="Search Hrdataentry"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/searchhrdataentry.jsp"/>
+    </definition>
+    
+    <definition name="edithrdataentry" extends="baselayout">
+        <put-attribute name="title"  value="Edit Hrdataentry"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/edithrdataentry.jsp"/>
+    </definition>
+    <definition name="statement" extends="baselayout">
+        <put-attribute name="title"  value="Statement Date"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/statement.jsp"/>
+    </definition>
+    <definition name="statements" extends="baselayout">
+        <put-attribute name="title"  value="Statements"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/statements.jsp"/>
+    </definition>
+    <definition name="hrdatareport" extends="baselayout">
+        <put-attribute name="title"  value="HR Data Report"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/hrdatareport.jsp"/>
+    </definition>
+    <definition name="statementhelp" extends="popuplayout">
+        <put-attribute name="title"  value="Statement Helpful hints"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/statementhelp.jsp"/>
+    </definition>
+    <definition name="hrdatahelp" extends="popuplayout">
+        <put-attribute name="title"  value="HRData Upload Helpful hints"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/hrdatahelp.jsp"/>
+    </definition>
+    <definition name="exporthelp" extends="popuplayout">
+        <put-attribute name="title"  value="Hr Data Export Helpful hints"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/exporthelp.jsp"/>
+    </definition>
+    <definition name="openstatement" extends="baselayout">
+        <put-attribute name="title"  value="Open Statement"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/addstatement.jsp"/>
+    </definition>
+    <definition name="editstatement" extends="baselayout">
+        <put-attribute name="title"  value="Edit Statement"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/HRData/editstatement.jsp"/>
+    </definition>
+    <!--HRDataEntry-->
+    
+    <!--Business-->
+    <definition name="addbusiness" extends="baselayout">
+        <put-attribute name="title"  value="Add Business"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Business/addbusiness.jsp"/>
+    </definition>
+    <definition name="searchbusiness" extends="baselayout">
+        <put-attribute name="title"  value="Search Business"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Business/searchbusiness.jsp"/>
+    </definition>
+    <definition name="editbusiness" extends="baselayout">
+        <put-attribute name="title"  value="Edit Business"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Business/editbusiness.jsp"/>
+    </definition>
+    <definition name="addbusinessunit" extends="baselayout">
+        <put-attribute name="title"  value="Add Client"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Business/addbusinessunit.jsp"/>
+    </definition>
+    <definition name="editbusinessunit" extends="baselayout">
+        <put-attribute name="title"  value="Edit Client"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Business/editbusinessunit.jsp"/>
+    </definition>
+    <definition name="searchbusinessunit" extends="baselayout">
+        <put-attribute name="title"  value="Client Management"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Business/searchbusinessunit.jsp"/>
+    </definition>
+    <definition name="searchclient" extends="baselayout">
+        <put-attribute name="title"  value="Search Clients"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Business/searchclient.jsp"/>
+    </definition>
+    <definition name="clienthelp" extends="popuplayout">
+        <put-attribute name="title"  value="Client Helpful hints"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Business/clientshelp.jsp"/>
+    </definition>
+    <!--Business-->
+    
+    <!--Dashboard-->
+    <definition name="getReports" extends="loginlayout">
+        <put-attribute name="title"  value="User Home"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/charts/charts.jsp"/>
+    </definition>
+    <definition name="globaldashboard" extends="baselayout">
+        <put-attribute name="title"  value="Global Dashboard"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/charts/globaldashboard.jsp"/>
+    </definition>
+    <definition name="locationdashboard" extends="baselayout">
+        <put-attribute name="title"  value="Location Dashboard"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/charts/locationdashboard.jsp"/>
+    </definition>
+    <definition name="processdashboard" extends="baselayout">
+        <put-attribute name="title"  value="Process Dashboard"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/charts/processdashboard.jsp"/>
+    </definition>
+    <definition name="subprocessdashboard" extends="baselayout">
+        <put-attribute name="title"  value="Subprocess Dashboard"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/charts/subprocessdashboard.jsp"/>
+    </definition>
+    <definition name="connecteddashboard" extends="baselayout">
+        <put-attribute name="title"  value="Connected Dashboard"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/charts/connecteddashboard.jsp"/>
+    </definition>
+    <definition name="maindashboard" extends="baselayout">
+        <put-attribute name="title"  value="Dashboard Home"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/charts/dashboard.jsp"/>
+    </definition>
+    <definition name="targetdashboard" extends="baselayout">
+        <put-attribute name="title"  value="Target Dashboard"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/charts/targetdashboard.jsp"/>
+    </definition>
+    <!--Dashboard-->
+    
+    <!--ExcelOperation-->
+   
+    <definition name="exceluploader" extends="innerdivlayout">
+        <put-attribute name="title"  value="ExcelUploader"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/ExcelOperation/ExcelUploader.jsp"/>
+    </definition>
+    <definition name="resourceip" extends="baselayout">
+        <put-attribute name="title"  value="ResouceIP"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/ExcelOperation/ResourceInput.jsp"/>
+    </definition>
+    <definition name="processing" extends="baselayout">
+        <put-attribute name="title"  value="Processing"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/ExcelOperation/ExcelProcessing.jsp"/>
+    </definition>
+    <definition name="excelexportview" extends="baselayout">
+        <put-attribute name="title"  value="ExcelExportView"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/ExcelOperation/ExcelExportView.jsp"/>
+    </definition>
+    <definition name="volkpiuploader" extends="baselayout">
+        <put-attribute name="title"  value="VolumeKPIUploader"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/ExcelOperation/VolumeKPIUploader.jsp"/>
+    </definition>
+    <definition name="volkpiprocessing" extends="baselayout">
+        <put-attribute name="title"  value="VolumeKPIProcessing"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/ExcelOperation/VolumeKPIProcessing.jsp"/>
+    </definition>
+    <definition name="volkpiprocessing" extends="baselayout">
+        <put-attribute name="title"  value="VolumeKPIProcessing"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/ExcelOperation/VolumeKPIProcessing.jsp"/>
+    </definition>
+    <definition name="kpi" extends="baselayout">
+        <put-attribute name="title"  value="KPI"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/ExcelOperation/kpi.jsp"/>
+    </definition>
+    <!--ExcelOperation-->
+    
+    <!--Tier-->
+    <definition name="searchtier" extends="baselayout">
+        <put-attribute name="title"  value="Search Tier"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Tier/searchtier.jsp"/>
+    </definition>
+    <definition name="tieroperation" extends="baselayout">
+        <put-attribute name="title"  value="Tier Operation"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Tier/addtier.jsp"/>
+    </definition>
+    <definition name="addtiertarget" extends="baselayout">
+        <put-attribute name="title"  value="Tier Target Operation"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Tier/addtiertarget.jsp"/>
+    </definition>
+    <definition name="searchtiertarget" extends="baselayout">
+        <put-attribute name="title"  value="Search Tier Target"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Tier/searchtiertarget.jsp"/>
+    </definition>   
+    <definition name="addtierprocess" extends="baselayout">
+        <put-attribute name="title"  value="Add Tier Process"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Tier/addtierprocess.jsp"/>
+    </definition>
+    <definition name="searchtierprocess" extends="baselayout">
+        <put-attribute name="title"  value="Search Tier Process"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Tier/searchtierprocess.jsp"/>
+    </definition>
+    
+    <!--Volume-->
+    <definition name="addvolume" extends="baselayout">
+        <put-attribute name="title"  value="Add Volume"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Volume/addvolume.jsp"/>
+    </definition>
+    <definition name="editvolume" extends="baselayout">
+        <put-attribute name="title"  value="Edit Volume"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Volume/editvolume.jsp"/>
+    </definition>
+    <definition name="searchvolume" extends="baselayout">
+        <put-attribute name="title"  value="Search Volume"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Volume/searchvolume.jsp"/>
+    </definition>
+    <definition name="searchvolumedescription" extends="baselayout">
+        <put-attribute name="title"  value="Search Volume Description"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Volume/searchvolumedescription.jsp"/>
+    </definition>    
+    <definition name="test1" extends="baselayout">
+        <put-attribute name="title"  value="Search Volume"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Volume/searchvolume.jsp"/>
+    </definition>
+    <definition name="test" extends="baselayout">
+        <put-attribute name="title"  value="Search Volume"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/test.jsp"/>
+    </definition>
+    
+    <!--Statement View-->
+    <definition name="statementview" extends="baselayout">
+        <put-attribute name="title"  value="Statement"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Statement/StatementHRData.jsp"/>
+    </definition>    
+    <!--Actions -->
+    <definition name="addactiontype" extends="baselayout">
+        <put-attribute name="title"  value="Add Action Type"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Actions/addactiontype.jsp"/>
+    </definition> 
+    <definition name="editactiontype" extends="baselayout">
+        <put-attribute name="title"  value="Edit Action Type"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Actions/editactiontype.jsp"/>
+    </definition> 
+    <definition name="listactiontype" extends="baselayout">
+        <put-attribute name="title"  value="List Action Type"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Actions/listactiontype.jsp"/>
+    </definition> 
+    <definition name="listactions" extends="baselayout">
+        <put-attribute name="title"  value="List Actions"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Actions/listactions.jsp"/>
+    </definition>  
+    <definition name="editactions" extends="baselayout">
+        <put-attribute name="title"  value="Edit Actions"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Actions/editactions.jsp"/>
+    </definition>
+    <definition name="addactions" extends="baselayout">
+        <put-attribute name="title"  value="Add Actions"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Actions/addactions.jsp"/>
+    </definition>
+    <definition name="searchactions" extends="baselayout">
+        <put-attribute name="title"  value="Search Actions"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Actions/searchactions.jsp"/>    
+    </definition>      
+    
+    <!--Target-->
+    <definition name="searchmetric" extends="baselayout">
+        <put-attribute name="title"  value="Search Metric"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Target/searchmetric.jsp"/>
+    </definition>
+    
+    <definition name="addmetric" extends="baselayout">
+        <put-attribute name="title"  value="Add Metric"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Target/addmetric.jsp"/>
+    </definition>
+    
+    <definition name="editmetric" extends="baselayout">
+        <put-attribute name="title"  value="Add Metric"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Target/editmetric.jsp"/>
+    </definition>
+    
+    <definition name="addtarget" extends="baselayout">
+        <put-attribute name="title"  value="Add Target"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Target/addtarget.jsp"/>
+    </definition>
+    
+    <definition name="searchtarget" extends="baselayout">
+        <put-attribute name="title"  value="Search Target"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Target/searchtarget.jsp"/>
+    </definition>
+    
+    <definition name="edittarget" extends="baselayout">
+        <put-attribute name="title"  value="Edit Target"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Target/edittarget.jsp"/>
+    </definition>
+    
+    <definition name="tdvolumeperfte" extends="baselayout">
+        <put-attribute name="title"  value="Volume Per FTE"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Target/vloumeperfte.jsp"/>
+    </definition>
+    
+    <definition name="tdlcostpertras" extends="baselayout">
+        <put-attribute name="title"  value="Labor Cost Per Transaction"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Target/laborcostpertransaction.jsp"/>
+    </definition>
+    
+    <definition name="spanofcontrol" extends="baselayout">
+        <put-attribute name="title"  value="Labor Cost Per FTE"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Target/spanofcontrol.jsp"/>
+    </definition>
+    
+    <definition name="testtarget" extends="baselayout">
+        <put-attribute name="title"  value="Test"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Target/testt.jsp"/>
+    </definition>
+</tiles-definitions>

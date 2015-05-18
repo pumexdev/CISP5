@@ -1,0 +1,60 @@
+#tabs {
+    list-style: none outside none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+}
+#tabs li {
+    float: left;
+    height: 37px;
+    margin: 0 0.6em 0 0;
+}
+#tabs a {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 5px 0 0 0;
+    color: #ADADAD;
+    float: left;
+    padding: 0.4em 1.5em;
+    position: relative;
+    text-decoration: none;
+}
+#tabs a:hover, #tabs a:hover:after {
+}
+#tabs a:focus, #tabs a:focus:after {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+#tabs a:focus {
+    outline: 0 none;
+}
+#tabs a:after {
+    -moz-transform: skew(10deg);
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0 none;
+    border-radius: 0 5px 0 0;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    right: -0.5em;
+    top: 0;
+    width: 1em;
+    z-index: 1;
+}
+#tabs #current a {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #D4D4D4;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    color: #464646;
+}
+#tabs #current a:after {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-right: 1px solid #D4D4D4;
+    color: #464646;
+    z-index: 3;
+}

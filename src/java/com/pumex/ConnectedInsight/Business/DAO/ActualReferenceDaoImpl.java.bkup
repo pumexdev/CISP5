@@ -1,0 +1,166 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.pumex.ConnectedInsight.Business.DAO;
+
+import com.pumex.ConnectedInsight.Business.beans.BenchmarkFormBean;
+import com.pumex.ConnectedInsight.common.Dao.CommonDaoInterface;
+import com.pumex.ConnectedInsight.common.Dao.SQLSelector;
+import com.pumex.ConnectedInsight.login.beans.UserBean;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+/**
+ *
+ * @author user
+ */
+@Repository
+public class ActualReferenceDaoImpl implements ActualReferenceDaoInterface
+{
+    @Autowired
+    DataSource dataSource;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+    @Autowired
+    CommonDaoInterface commonDaoInterface;
+
+    @Override
+    public void addActualReference(BenchmarkFormBean benchmarkFormBean, UserBean userBean)
+    {
+        String query = SQLSelector.getQuery("actualreference.insert");
+        switch (benchmarkFormBean.getParamtypecode())
+        {
+            case 1://Revenue
+                Integer[] clients_name = benchmarkFormBean.getClientsrevenue();
+                Double[] clients_volume = benchmarkFormBean.getClientrevenue();
+                for (Integer i = 0; i < clients_name.length; ++i)
+                {
+                    jdbcTemplate.update(query, new Object[]{userBean.getOrganizationid(), clients_name[i], benchmarkFormBean.getBusinesscenter(), benchmarkFormBean.getSubprocess(), benchmarkFormBean.getFromdate(), benchmarkFormBean.getParamtypecode(), clients_volume[i], benchmarkFormBean.getStatus(),0});
+                }
+                break;
+            case 2://Volume
+                Integer[] client_names = benchmarkFormBean.getClientsvolume();
+                Double[] client_volumes = benchmarkFormBean.getClientvolume();
+                Integer[] subprocess = benchmarkFormBean.getSubprocesses();
+                Integer [] volume_description=benchmarkFormBean.getDescription();
+                Integer k=0;
+                for (Integer i = 0; i < subprocess.length; ++i)
+                {
+                    for (Integer j = 0; j < client_names.length; ++j)
+                    {
+                        jdbcTemplate.update(query, new Object[]{userBean.getOrganizationid(), client_names[j], benchmarkFormBean.getBusinesscenter(), subprocess[i], benchmarkFormBean.getFromdate(), benchmarkFormBean.getParamtypecode(), client_volumes[k], benchmarkFormBean.getStatus(),volume_description[i]});
+                        k++;
+                    }
+                }
+        }
+    }
+
+    @Override
+    public void editActualReference(BenchmarkFormBean benchmarkFormBean)
+    {
+        String query = SQLSelector.getQuery("actualreference.update");
+        switch (benchmarkFormBean.getParamtypecode())
+        {
+            case 1://Revenue
+                Integer[] clients_name = benchmarkFormBean.getClientsrevenue();
+                Double[] clients_volume = benchmarkFormBean.getClientrevenue();
+                Integer[] actual_id = benchmarkFormBean.getActualreferenceid();               
+                for (Integer i = 0; i < clients_name.length; ++i)
+                {
+                    jdbcTemplate.update(query, new Object[]{clients_volume[i],0,actual_id[i]});
+                }
+                break;
+            case 2://Volume
+                Integer[] client_names = benchmarkFormBean.getClientsvolume();
+                Double[] client_volumes = benchmarkFormBean.getClientvolume();
+                Integer[] subprocess = benchmarkFormBean.getSubprocesses();
+                Integer[] actual_ids = benchmarkFormBean.getActualreferenceid();
+                Integer [] volume_description=benchmarkFormBean.getDescription();
+                Integer k=0;
+                for (Integer i = 0; i < subprocess.length; ++i)
+                {
+                    for (Integer j = 0; j < client_names.length; ++j)
+                    {
+                        //jdbcTemplate.update(query, new Object[]{client_names[j], benchmarkFormBean.getFromdate(), client_volumes[j], benchmarkFormBean.getStatus(), actual_ids[i]});
+                        jdbcTemplate.update(query, new Object[]{client_volumes[k],volume_description[i],actual_ids[k]});
+                        k++;
+                    }
+                }
+        }
+    }
+
+    @Override
+    public BenchmarkFormBean getSearchresult(BenchmarkFormBean benchmarkFormBean)
+    {
+        String query = SQLSelector.getQuery("actualreference.searchcount");
+        Long count = (Long) commonDaoInterface.queryForObject(query, benchmarkFormBean.getBusinesscenter(), benchmarkFormBean.getFromdate(),benchmarkFormBean.getParamtypecode());
+        if (count == 0)
+            benchmarkFormBean.setOperation(3);
+        else
+            benchmarkFormBean.setOperation(2);
+        return benchmarkFormBean;
+    }
+
+    @Override
+    public BenchmarkFormBean getActualReferencerDetails(final BenchmarkFormBean benchmarkFormBean, Integer parameterId)
+    {
+        String query = SQLSelector.getQuery("actualreference.getdata");
+        return (BenchmarkFormBean) jdbcTemplate.queryForObject(query, new Object[]{parameterId}, new RowMapper()
+        {
+            @Override
+            public Object mapRow(ResultSet rs, int i) throws SQLException
+            {
+                benchmarkFormBean.setOrganization(rs.getInt("OrganizationId"));
+                benchmarkFormBean.setBusinessunit(rs.getInt("BusinessUnitId"));
+                benchmarkFormBean.setBusinesscenter(rs.getInt("BusinessCenterId"));
+                benchmarkFormBean.setProcess(rs.getInt("ProcessId"));
+                benchmarkFormBean.setSubprocess(rs.getInt("SubProcessId"));
+                benchmarkFormBean.setFromdate(rs.getString("FromDate"));
+                benchmarkFormBean.setTodate(rs.getString("ToDate"));
+                benchmarkFormBean.setParamtypecode(rs.getInt("ParamTypeCode"));
+                benchmarkFormBean.setActual(rs.getDouble("ActualValue"));
+                benchmarkFormBean.setStatus(rs.getInt("Status"));
+                return benchmarkFormBean;
+            }
+        });
+    }
+
+    @Override
+    public Map getYear()
+    {
+        String query = SQLSelector.getQuery("actualreference.getyear");
+        return commonDaoInterface.queryForDates(query);
+    }
+
+    @Override
+    public Map getdatelist()
+    {
+        String query = SQLSelector.getQuery("hrdata.getdate");
+        return commonDaoInterface.queryForMap(query);
+    }
+
+    @Override
+    public Map getActalValueList(BenchmarkFormBean benchmarkFormBean)
+    {
+        String query = SQLSelector.getQuery("actual.getlist");
+        Map<Integer,String> actualList=new TreeMap<Integer, String>();
+        actualList = commonDaoInterface.queryForMap(query, benchmarkFormBean.getBusinesscenter(), benchmarkFormBean.getFromdate(),benchmarkFormBean.getParamtypecode());
+        return actualList;
+    }    
+    public List setVolumeDescription(String center,String date,String parameter,String status)
+    {
+        String query=SQLSelector.getQuery("actual.getdescription");
+        return jdbcTemplate.queryForList(query,new Object[]{center,date,parameter});
+    }
+}

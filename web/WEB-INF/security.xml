@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans 
+        xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+         
+    <http auto-config="false" entry-point-ref="authenticationEntryPoint" use-expressions="true">
+        <intercept-url access="hasAnyRole('ER Admin')" pattern="/eradmin.htm*"/>
+        <intercept-url access="hasAnyRole('Client Admin')" pattern="/vishnu.htm*"/>
+        <intercept-url access="hasAnyRole('CBC')" pattern="/vishnuau.htm*"/>
+        <form-login login-page="/index.htm" default-target-url="/userhome.htm" authentication-failure-url="/index.htm?error=true" />
+        <logout logout-success-url="/logout" />
+    </http>
+ 
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="dataSource"
+                    users-by-username-query="select username,pwd, role from user where username=?"
+                    authorities-by-username-query="select u.username, ur.rolename from user u, userrole ur where ur.id =u.role and u.username =?"/>
+        </authentication-provider>
+        <authentication-provider>
+            <user-service>
+                <user name="eradmin" password="eradmin" authorities="ER Admin"/>
+		 </user-service>
+        </authentication-provider>
+    </authentication-manager>
+        
+    <beans:bean  class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint" id="authenticationEntryPoint">
+        <beans:property name="loginFormUrl" value="/index.htm"/>
+    </beans:bean>
+ 
+</beans:beans>
